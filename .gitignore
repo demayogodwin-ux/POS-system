@@ -1,0 +1,5 @@
+target/
+# Database credentials
+.env
+# Old builds have the database password baked into db.properties
+original-build/

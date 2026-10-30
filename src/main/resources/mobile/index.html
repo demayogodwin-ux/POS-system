@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#F5A524">
+    <title>My Store</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="My Store">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <header class="topbar">
+        <a href="#/" class="brand"><span class="logo">MS</span><span id="storeName">My Store</span></a>
+        <a href="#/cart" class="cart-link" aria-label="Cart">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z M6 6L5 3H2 M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2z M18 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+            <span id="cartBadge" class="badge" hidden>0</span>
+        </a>
+    </header>
+
+    <div id="installBar" class="install-bar" hidden></div>
+
+    <main id="view" aria-live="polite"></main>
+
+    <div id="toast" class="toast" role="status" hidden></div>
+
+    <nav class="tabbar" id="tabbar">
+        <a href="#/" data-tab="shop">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4z M3 7v10l9 4 9-4V7 M12 11v10"/></svg>
+            <span>Shop</span>
+        </a>
+        <a href="#/stores" data-tab="stores">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg>
+            <span>Stores</span>
+        </a>
+        <a href="#/orders" data-tab="orders">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 M3 4v5h5 M12 7v5l3 3"/></svg>
+            <span>Orders</span>
+        </a>
+        <a href="#/account" data-tab="account">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21a8 8 0 0 1 16 0"/></svg>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>

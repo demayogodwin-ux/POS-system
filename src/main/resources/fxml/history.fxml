@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:id="historyRoot" fx:controller="com.pos.ui.HistoryController">
+
+    <!-- Main area -->
+    <center>
+        <VBox styleClass="products-main">
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="2">
+                    <Label text="Sales History" styleClass="title"/>
+                    <Label fx:id="dateLabel" styleClass="muted"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <DatePicker fx:id="datePicker" editable="false" styleClass="date-button" minWidth="-Infinity"/>
+                <ToggleButton fx:id="allDaysToggle" text="All days" styleClass="category-chip" minWidth="-Infinity"/>
+                <Button fx:id="exportButton" text="Export CSV" onAction="#handleExport" styleClass="btn-secondary" minWidth="-Infinity"/>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label fx:id="salesCaption" text="TODAY'S SALES" styleClass="stat-label"/>
+                    <Label fx:id="totalSalesLabel" text="-" styleClass="stat-value"/>
+                    <Label fx:id="countLabel" styleClass="muted, stat-note"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="AVERAGE SALE" styleClass="stat-label"/>
+                    <Label fx:id="averageLabel" text="-" styleClass="stat-value"/>
+                    <Label text="Per paid sale" styleClass="muted, stat-note"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="ITEMS SOLD" styleClass="stat-label"/>
+                    <Label fx:id="itemsSoldLabel" text="-" styleClass="stat-value"/>
+                    <Label text="Units in paid sales" styleClass="muted, stat-note"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="TAX COLLECTED" styleClass="stat-label"/>
+                    <Label fx:id="taxLabel" text="-" styleClass="stat-value"/>
+                    <Label text="Included in sales" styleClass="muted, stat-note"/>
+                </VBox>
+            </HBox>
+
+            <TableView fx:id="salesTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="receiptColumn" text="RECEIPT" styleClass="mono, strong"/>
+                    <TableColumn fx:id="timeColumn" text="TIME" styleClass="muted"/>
+                    <TableColumn fx:id="cashierColumn" text="CASHIER"/>
+                    <TableColumn fx:id="paymentColumn" text="PAYMENT" styleClass="muted"/>
+                    <TableColumn fx:id="itemsColumn" text="ITEMS" styleClass="mono, numeric"/>
+                    <TableColumn fx:id="totalColumn" text="TOTAL" styleClass="mono, strong, numeric"/>
+                    <TableColumn fx:id="statusColumn" text="STATUS"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Selected sale -->
+    <right>
+        <StackPane styleClass="cart-panel">
+
+            <Label fx:id="emptyDetailLabel" text="Select a sale to see its receipt."
+                   wrapText="true" styleClass="muted"/>
+
+            <VBox fx:id="detailBox" spacing="16" visible="false">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label fx:id="detailTitleLabel" styleClass="cart-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="detailStatusChip"/>
+                </HBox>
+                <Label fx:id="detailMetaLabel" styleClass="muted"/>
+
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS" styleClass="detail-scroll">
+                    <VBox fx:id="itemsBox" spacing="8"/>
+                </ScrollPane>
+
+                <VBox spacing="8">
+                    <HBox styleClass="totals-row">
+                        <Label text="Subtotal" styleClass="muted"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="detailSubtotalLabel" styleClass="mono"/>
+                    </HBox>
+                    <HBox styleClass="totals-row">
+                        <Label text="Tax" styleClass="muted"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="detailTaxLabel" styleClass="mono"/>
+                    </HBox>
+                    <HBox styleClass="totals-row, detail-total-row" alignment="CENTER_LEFT">
+                        <Label text="Total"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="detailTotalLabel" styleClass="mono, detail-total"/>
+                    </HBox>
+                    <HBox styleClass="totals-row">
+                        <Label fx:id="detailPaidCaption" styleClass="muted"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="detailPaidLabel" styleClass="mono"/>
+                    </HBox>
+                    <HBox fx:id="detailChangeRow" styleClass="totals-row">
+                        <Label text="Change" styleClass="muted"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="detailChangeLabel" styleClass="mono"/>
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="10">
+                    <Button fx:id="reprintButton" text="Reprint Receipt" maxWidth="Infinity"
+                            onAction="#handleReprint" styleClass="btn-secondary"/>
+                    <Button fx:id="voidButton" text="Void sale" maxWidth="Infinity"
+                            onAction="#handleVoid" styleClass="btn-ghost, text-danger"/>
+                </VBox>
+            </VBox>
+        </StackPane>
+    </right>
+</BorderPane>

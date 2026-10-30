@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:id="saleRoot" fx:controller="com.pos.ui.SaleController">
+
+    <!-- Main area -->
+    <center>
+        <VBox styleClass="sale-main">
+
+            <HBox alignment="CENTER_LEFT" spacing="16">
+                <VBox spacing="2">
+                    <Label text="New Sale" styleClass="title"/>
+                    <Label fx:id="cashierLabel" styleClass="muted"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox fx:id="scanBox" styleClass="scan-box">
+                    <TextField fx:id="scanField" promptText="Scan barcode or search..." HBox.hgrow="ALWAYS"/>
+                    <Label text="F2" styleClass="keycap"/>
+                </HBox>
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="16">
+                <FlowPane fx:id="categoryBar" hgap="8" vgap="8" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="statusLabel" styleClass="text-danger, status-label" visible="false"/>
+            </HBox>
+
+            <!-- Product cards with photos; click a card to add it to the cart -->
+            <ScrollPane fx:id="productScroll" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS" styleClass="product-grid-scroll">
+                <FlowPane fx:id="productGrid" hgap="12" vgap="12" styleClass="product-grid"/>
+            </ScrollPane>
+        </VBox>
+    </center>
+
+    <!-- Cart panel -->
+    <right>
+        <VBox styleClass="cart-panel">
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label fx:id="cartTitleLabel" styleClass="cart-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="clearButton" text="Clear" onAction="#handleClear"
+                        styleClass="btn-secondary, btn-sm"/>
+            </HBox>
+
+            <ListView fx:id="cartList" styleClass="cart-list" VBox.vgrow="ALWAYS"/>
+
+            <VBox spacing="8">
+                <HBox styleClass="totals-row">
+                    <Label text="Subtotal" styleClass="muted"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="subtotalLabel" styleClass="mono"/>
+                </HBox>
+                <HBox styleClass="totals-row">
+                    <Label fx:id="taxNameLabel" styleClass="muted"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="taxLabel" styleClass="mono"/>
+                </HBox>
+            </VBox>
+
+            <VBox styleClass="total-due">
+                <Label text="TOTAL DUE" styleClass="caption"/>
+                <Label fx:id="totalLabel" styleClass="amount"/>
+            </VBox>
+
+            <HBox spacing="8">
+                <Button fx:id="exactButton" text="Exact" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                        styleClass="btn-secondary, quick-cash"/>
+                <Button fx:id="next100Button" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                        styleClass="btn-secondary, quick-cash"/>
+                <Button fx:id="next1000Button" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                        styleClass="btn-secondary, quick-cash"/>
+            </HBox>
+
+            <Button fx:id="checkoutButton" text="Checkout - F12" maxWidth="Infinity"
+                    onAction="#handleCheckout" styleClass="btn-primary, btn-xl"/>
+        </VBox>
+    </right>
+</BorderPane>

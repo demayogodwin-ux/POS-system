@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:id="settingsRoot" fx:controller="com.pos.ui.SettingsController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="settings-header">
+            <VBox spacing="2">
+                <Label text="Settings" styleClass="title"/>
+                <Label text="Store, tax and receipt preferences" styleClass="muted"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="messageLabel" styleClass="form-message"/>
+            <Button fx:id="discardButton" text="Discard" onAction="#handleDiscard" styleClass="btn-ghost"/>
+            <Button fx:id="saveButton" text="Save Settings" onAction="#handleSave" styleClass="btn-primary"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <HBox spacing="16" styleClass="settings-columns">
+
+                <!-- Left column -->
+                <VBox spacing="16" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+
+                    <VBox styleClass="card, settings-card">
+                        <Label text="Store details" styleClass="card-title"/>
+                        <VBox spacing="6">
+                            <Label text="STORE NAME" styleClass="field-label"/>
+                            <TextField fx:id="storeNameField" promptText="My Store"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="ADDRESS" styleClass="field-label"/>
+                            <TextField fx:id="addressField" promptText="Street, city"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="RECEIPT FOOTER" styleClass="field-label"/>
+                            <TextField fx:id="footerField" promptText="Thank you for shopping!"/>
+                        </VBox>
+                    </VBox>
+
+                    <VBox styleClass="card, settings-card">
+                        <Label text="Tax &amp; currency" styleClass="card-title"/>
+                        <HBox spacing="12">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                                <Label text="TAX RATE (%)" styleClass="field-label"/>
+                                <TextField fx:id="taxRateField" promptText="12" styleClass="mono"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                                <Label text="CURRENCY" styleClass="field-label"/>
+                                <TextField fx:id="currencyField" editable="false" focusTraversable="false"
+                                           styleClass="read-only"/>
+                            </VBox>
+                        </HBox>
+                        <HBox styleClass="setting-row">
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Prices include tax" styleClass="setting-name"/>
+                                <Label text="Product prices already contain tax; it is shown, not added."
+                                       wrapText="true" styleClass="muted, setting-hint"/>
+                            </VBox>
+                            <ToggleButton fx:id="includeTaxSwitch" styleClass="switch"/>
+                        </HBox>
+                    </VBox>
+
+                    <VBox styleClass="card, settings-card">
+                        <Label text="Customer phone app" styleClass="card-title"/>
+                        <VBox spacing="6">
+                            <Label text="GOOGLE MAPS API KEY" styleClass="field-label"/>
+                            <TextField fx:id="mapsKeyField" promptText="AIza..." styleClass="mono"/>
+                            <Label text="Needs the Maps JavaScript API enabled. Without a key the app shows simple Google Maps embeds instead of live maps."
+                                   wrapText="true" styleClass="muted, setting-hint"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="PHONE APP ADDRESS" styleClass="field-label"/>
+                            <TextField fx:id="appAddressField" editable="false" focusTraversable="false"
+                                       styleClass="read-only, mono"/>
+                            <Label text="Phones on the store Wi-Fi open this address. Branch locations are kept in the stores table."
+                                   wrapText="true" styleClass="muted, setting-hint"/>
+                        </VBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Right column -->
+                <VBox spacing="16" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+
+                    <VBox styleClass="card, settings-card">
+                        <Label text="Receipt &amp; hardware" styleClass="card-title"/>
+                        <HBox styleClass="setting-row">
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Print receipt after each sale" styleClass="setting-name"/>
+                                <Label text="Sends the receipt to the default printer automatically."
+                                       wrapText="true" styleClass="muted, setting-hint"/>
+                            </VBox>
+                            <ToggleButton fx:id="printReceiptSwitch" styleClass="switch"/>
+                        </HBox>
+                        <HBox styleClass="setting-row">
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Open cash drawer" styleClass="setting-name"/>
+                                <Label text="Saved for when a cash drawer is connected."
+                                       wrapText="true" styleClass="muted, setting-hint"/>
+                            </VBox>
+                            <ToggleButton fx:id="cashDrawerSwitch" styleClass="switch"/>
+                        </HBox>
+                        <HBox styleClass="setting-row">
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Beep on barcode scan" styleClass="setting-name"/>
+                                <Label text="Plays a short sound when an item is added to the cart."
+                                       wrapText="true" styleClass="muted, setting-hint"/>
+                            </VBox>
+                            <ToggleButton fx:id="beepSwitch" styleClass="switch"/>
+                        </HBox>
+                    </VBox>
+
+                    <VBox styleClass="card, settings-card">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Cashiers" styleClass="card-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="addCashierButton" text="Add Cashier" onAction="#handleAddCashier"
+                                    styleClass="btn-secondary, btn-sm"/>
+                        </HBox>
+                        <VBox fx:id="usersBox" spacing="8"/>
+                    </VBox>
+                </VBox>
+            </HBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,18 @@
+{
+    "id": "/",
+    "name": "My Store",
+    "short_name": "My Store",
+    "description": "Order from My Store, check prices and track your delivery.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#FAF8F4",
+    "theme_color": "#F5A524",
+    "icons": [
+        { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+        { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+        { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+    ]
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.pos.ui.CheckoutController"
+      styleClass="checkout-card">
+
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Checkout" styleClass="title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="closeButton" onAction="#handleCancel" styleClass="btn-icon"/>
+    </HBox>
+
+    <VBox styleClass="amount-due-box">
+        <Label text="AMOUNT DUE" styleClass="caption"/>
+        <Label fx:id="amountDueLabel" styleClass="amount-due"/>
+        <Label fx:id="summaryLabel" styleClass="muted"/>
+    </VBox>
+
+    <VBox spacing="8">
+        <Label text="PAYMENT METHOD" styleClass="field-label"/>
+        <HBox styleClass="segmented">
+            <ToggleButton fx:id="cashToggle" text="Cash" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="segment"/>
+            <ToggleButton fx:id="cardToggle" text="Card" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="segment"/>
+            <ToggleButton fx:id="ewalletToggle" text="E-wallet" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="segment"/>
+        </HBox>
+    </VBox>
+
+    <VBox fx:id="cashSection" spacing="8">
+        <Label text="CASH RECEIVED" styleClass="field-label"/>
+        <TextField fx:id="cashField" promptText="0.00" styleClass="cash-field"/>
+        <HBox spacing="8">
+            <Button fx:id="exactButton" text="Exact" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                    styleClass="btn-secondary, quick-cash"/>
+            <Button fx:id="next100Button" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                    styleClass="btn-secondary, quick-cash"/>
+            <Button fx:id="next500Button" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                    styleClass="btn-secondary, quick-cash"/>
+            <Button fx:id="next1000Button" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                    styleClass="btn-secondary, quick-cash"/>
+        </HBox>
+    </VBox>
+
+    <HBox fx:id="changeBox" alignment="CENTER_LEFT" styleClass="change-box">
+        <Label fx:id="changeCaption" text="CHANGE" styleClass="caption"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="changeLabel" styleClass="change-amount"/>
+    </HBox>
+
+    <HBox spacing="12">
+        <Button fx:id="cancelButton" text="Cancel" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                onAction="#handleCancel" styleClass="btn-secondary, btn-lg"/>
+        <Button fx:id="completeButton" text="Complete Sale" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                onAction="#handleComplete" styleClass="btn-primary, btn-lg"/>
+    </HBox>
+</VBox>

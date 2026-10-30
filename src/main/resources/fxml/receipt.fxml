@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.pos.ui.ReceiptController"
+      alignment="TOP_CENTER" styleClass="receipt-card">
+
+    <StackPane fx:id="checkCircle" styleClass="success-circle"/>
+
+    <VBox alignment="CENTER" spacing="4">
+        <Label text="Payment complete" styleClass="receipt-title"/>
+        <Label fx:id="changeMessageLabel" styleClass="muted"/>
+    </VBox>
+
+    <ScrollPane fx:id="previewScroll" fitToWidth="true" hbarPolicy="NEVER" styleClass="receipt-scroll">
+        <StackPane fx:id="previewHolder" alignment="TOP_CENTER"/>
+    </ScrollPane>
+
+    <HBox spacing="12">
+        <Button fx:id="printButton" text="Print Receipt" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                onAction="#handlePrint" styleClass="btn-secondary, btn-lg"/>
+        <Button fx:id="newSaleButton" text="New Sale" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                onAction="#handleNewSale" styleClass="btn-primary, btn-lg"/>
+    </HBox>
+</VBox>

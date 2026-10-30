@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.pos.ui.AddUserController"
+      styleClass="dialog-card">
+
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Add Cashier" styleClass="title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="closeButton" onAction="#handleCancel" styleClass="btn-icon"/>
+    </HBox>
+
+    <HBox spacing="12">
+        <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+            <Label text="USERNAME" styleClass="field-label"/>
+            <TextField fx:id="usernameField" promptText="e.g. maria"/>
+        </VBox>
+        <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+            <Label text="ROLE" styleClass="field-label"/>
+            <ComboBox fx:id="roleBox" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="6">
+        <Label text="FULL NAME" styleClass="field-label"/>
+        <TextField fx:id="fullNameField" promptText="Shown on receipts"/>
+    </VBox>
+
+    <HBox spacing="12">
+        <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+            <Label text="PIN" styleClass="field-label"/>
+            <StackPane alignment="CENTER_RIGHT">
+                <PasswordField fx:id="pinField" promptText="4-6 digits" styleClass="pin-field"/>
+                <TextField fx:id="pinTextField" promptText="4-6 digits" styleClass="pin-field" visible="false"/>
+                <Button fx:id="showPinButton" styleClass="btn-icon, btn-icon-sm">
+                    <StackPane.margin>
+                        <Insets right="7"/>
+                    </StackPane.margin>
+                </Button>
+            </StackPane>
+        </VBox>
+        <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+            <Label text="CONFIRM PIN" styleClass="field-label"/>
+            <StackPane alignment="CENTER_RIGHT">
+                <PasswordField fx:id="pinConfirmField" promptText="Repeat PIN" styleClass="pin-field"/>
+                <TextField fx:id="pinConfirmTextField" promptText="Repeat PIN" styleClass="pin-field" visible="false"/>
+                <Button fx:id="showPinConfirmButton" styleClass="btn-icon, btn-icon-sm">
+                    <StackPane.margin>
+                        <Insets right="7"/>
+                    </StackPane.margin>
+                </Button>
+            </StackPane>
+        </VBox>
+    </HBox>
+
+    <Label fx:id="errorLabel" wrapText="true" styleClass="form-message"/>
+
+    <HBox spacing="12">
+        <Button fx:id="cancelButton" text="Cancel" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                onAction="#handleCancel" styleClass="btn-secondary"/>
+        <Button fx:id="addButton" text="Add Cashier" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                onAction="#handleAdd" styleClass="btn-primary"/>
+    </HBox>
+</VBox>

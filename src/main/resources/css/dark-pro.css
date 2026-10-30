@@ -1,0 +1,1526 @@
+/*
+ * Dark Pro theme for My Store POS.
+ *
+ * JavaFX CSS has no letter-spacing or text-transform, so uppercase labels
+ * (table headers, stat labels) must be written in uppercase in code.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Tokens                                                              */
+/* ------------------------------------------------------------------ */
+
+.root {
+    -pos-bg: #121417;
+    -pos-rail: #0C0D10;
+    -pos-panel: #17191D;
+    -pos-surface: #1C1F24;
+    -pos-surface-2: #1F2227;
+    -pos-raised: #23272E;
+    -pos-border: #2A2E35;
+    -pos-border-strong: #3A404A;
+    -pos-text: #ECEEF1;
+    -pos-muted: #9AA3AE;
+    -pos-accent: #F5A524;
+    -pos-on-accent: #1A1300;
+    -pos-success: #34D399;
+    -pos-danger: #F87171;
+    -pos-paper: #F5F3EE;
+    -pos-ink: #1C1C1C;
+
+    /* 15% tints for chips, and a soft amber focus ring */
+    -pos-accent-tint: rgba(245, 165, 36, 0.15);
+    -pos-success-tint: rgba(52, 211, 153, 0.15);
+    -pos-danger-tint: rgba(248, 113, 113, 0.15);
+    -pos-muted-tint: rgba(154, 163, 174, 0.15);
+    -pos-accent-ring: rgba(245, 165, 36, 0.45);
+
+    /* Re-point Modena's own variables so unstyled controls are dark too */
+    -fx-base: -pos-surface-2;
+    -fx-background: -pos-bg;
+    -fx-control-inner-background: -pos-surface;
+    -fx-accent: -pos-accent;
+    -fx-default-button: -pos-accent;
+    -fx-focus-color: -pos-accent;
+    -fx-faint-focus-color: transparent;
+    -fx-text-base-color: -pos-text;
+    -fx-text-background-color: -pos-text;
+    -fx-text-inner-color: -pos-text;
+    -fx-mark-color: -pos-text;
+    -fx-selection-bar: -pos-raised;
+    -fx-selection-bar-non-focused: -pos-raised;
+    -fx-selection-bar-text: -pos-text;
+    -fx-cell-focus-inner-border: transparent;
+
+    -fx-background-color: -pos-bg;
+    -fx-font-family: "Manrope";
+    -fx-font-size: 14px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Typography helpers                                                  */
+/* ------------------------------------------------------------------ */
+
+.label {
+    -fx-text-fill: -pos-text;
+}
+
+.title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -pos-text;
+}
+
+.muted {
+    -fx-text-fill: -pos-muted;
+}
+
+.mono {
+    -fx-font-family: "JetBrains Mono";
+}
+
+.stat-label {
+    -fx-text-fill: -pos-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.stat-value {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -pos-text;
+}
+
+.page {
+    -fx-padding: 24;
+    -fx-spacing: 24;
+}
+
+/* ------------------------------------------------------------------ */
+/* Navigation rail                                                     */
+/* ------------------------------------------------------------------ */
+
+.nav-rail {
+    -fx-background-color: -pos-rail;
+    -fx-border-color: transparent -pos-border transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-min-width: 88;
+    -fx-pref-width: 88;
+    -fx-max-width: 88;
+    -fx-padding: 16 8 16 8;
+    -fx-spacing: 8;
+    -fx-alignment: top-center;
+}
+
+.logo-badge {
+    -fx-min-width: 44;
+    -fx-pref-width: 44;
+    -fx-max-width: 44;
+    -fx-min-height: 44;
+    -fx-pref-height: 44;
+    -fx-max-height: 44;
+    -fx-background-color: -pos-accent;
+    -fx-background-radius: 12;
+    -fx-text-fill: -pos-on-accent;
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-alignment: center;
+}
+
+.nav-item {
+    -fx-min-width: 72;
+    -fx-pref-width: 72;
+    -fx-max-width: 72;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-width: 0;
+    -fx-padding: 8 4 8 4;
+    -fx-content-display: top;
+    -fx-graphic-text-gap: 4;
+    -fx-alignment: center;
+    -fx-text-fill: -pos-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+}
+
+.nav-item .icon {
+    -fx-stroke: -pos-muted;
+}
+
+.nav-item:hover {
+    -fx-background-color: -pos-surface-2;
+}
+
+.nav-item:selected {
+    -fx-background-color: -pos-raised;
+    -fx-text-fill: -pos-accent;
+}
+
+.nav-item:selected .icon {
+    -fx-stroke: -pos-accent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Buttons                                                             */
+/* ------------------------------------------------------------------ */
+
+.btn-primary,
+.btn-secondary,
+.btn-ghost {
+    -fx-min-height: 44;
+    -fx-pref-height: 44;
+    -fx-padding: 0 20 0 20;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-graphic-text-gap: 8;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}
+
+.btn-primary {
+    -fx-background-color: -pos-accent;
+    -fx-border-width: 0;
+    -fx-text-fill: -pos-on-accent;
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
+}
+
+.btn-primary .icon {
+    -fx-stroke: -pos-on-accent;
+}
+
+.btn-primary:hover {
+    -fx-background-color: derive(-pos-accent, 12%);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: derive(-pos-accent, -10%);
+}
+
+.btn-primary:focused {
+    -fx-border-color: -pos-accent-ring;
+    -fx-border-width: 2;
+    -fx-border-insets: -4;
+    -fx-border-radius: 13;
+}
+
+.btn-secondary {
+    -fx-background-color: -pos-surface-2;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-text-fill: -pos-text;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: -pos-raised;
+}
+
+.btn-ghost {
+    -fx-background-color: transparent;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-text-fill: -pos-text;
+}
+
+.btn-ghost:hover {
+    -fx-background-color: -pos-surface-2;
+}
+
+.btn-secondary:pressed,
+.btn-ghost:pressed {
+    -fx-background-color: -pos-surface;
+}
+
+.btn-secondary:focused,
+.btn-ghost:focused {
+    -fx-border-color: -pos-accent;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-ghost:disabled {
+    -fx-opacity: 0.45;
+}
+
+/* Declared after the buttons so it wins on .btn-ghost.text-danger */
+.text-danger {
+    -fx-text-fill: -pos-danger;
+}
+
+.text-danger .icon {
+    -fx-stroke: -pos-danger;
+}
+
+/* ------------------------------------------------------------------ */
+/* Inputs                                                              */
+/* ------------------------------------------------------------------ */
+
+.text-field,
+.password-field,
+.combo-box {
+    -fx-min-height: 46;
+    -fx-pref-height: 46;
+    -fx-background-color: -pos-surface;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+}
+
+.text-field,
+.password-field {
+    -fx-padding: 0 14 0 14;
+    -fx-text-fill: -pos-text;
+    -fx-prompt-text-fill: -pos-muted;
+    -fx-highlight-fill: -pos-accent;
+    -fx-highlight-text-fill: -pos-on-accent;
+}
+
+.text-field:focused,
+.password-field:focused,
+.combo-box:focused,
+.combo-box:showing {
+    -fx-border-color: -pos-accent;
+}
+
+.combo-box {
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.combo-box > .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -pos-text;
+    -fx-padding: 0 14 0 14;
+}
+
+.combo-box > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 16 0 8;
+}
+
+.combo-box > .arrow-button > .arrow {
+    -fx-background-color: -pos-muted;
+}
+
+.combo-box-popup > .list-view {
+    -fx-background-color: -pos-surface-2;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-radius: 10;
+    -fx-padding: 4;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 16, 0, 0, 6);
+}
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-text-fill: -pos-text;
+    -fx-padding: 10 12 10 12;
+}
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover,
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
+    -fx-background-color: -pos-raised;
+}
+
+/* Right-click menu on text fields */
+.context-menu {
+    -fx-background-color: -pos-surface-2;
+    -fx-background-radius: 10;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-radius: 10;
+    -fx-padding: 4;
+}
+
+.context-menu .menu-item {
+    -fx-background-radius: 6;
+}
+
+.context-menu .menu-item:focused {
+    -fx-background-color: -pos-raised;
+}
+
+.context-menu .menu-item .label {
+    -fx-text-fill: -pos-text;
+}
+
+.tooltip {
+    -fx-background-color: -pos-raised;
+    -fx-background-radius: 8;
+    -fx-text-fill: -pos-text;
+    -fx-font-size: 12px;
+    -fx-padding: 6 10 6 10;
+}
+
+/* ------------------------------------------------------------------ */
+/* Switch (ToggleButton drawn as a 44x24 pill)                         */
+/* ------------------------------------------------------------------ */
+
+.switch {
+    -fx-min-width: 44;
+    -fx-pref-width: 44;
+    -fx-max-width: 44;
+    -fx-min-height: 24;
+    -fx-pref-height: 24;
+    -fx-max-height: 24;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-text-fill: transparent;
+    -fx-cursor: hand;
+    /* track, then an 18px thumb on the left */
+    -fx-background-color: -pos-border-strong, -pos-muted;
+    -fx-background-insets: 0, 3 23 3 3;
+    -fx-background-radius: 12, 9;
+}
+
+.switch:selected {
+    -fx-background-color: -pos-accent, -pos-on-accent;
+    -fx-background-insets: 0, 3 3 3 23;
+}
+
+.switch:focused {
+    -fx-border-color: -pos-accent-ring;
+    -fx-border-width: 2;
+    -fx-border-insets: -4;
+    -fx-border-radius: 16;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cards, chips, totals                                                */
+/* ------------------------------------------------------------------ */
+
+.card {
+    -fx-background-color: -pos-surface;
+    -fx-background-radius: 14;
+    -fx-border-color: -pos-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 14;
+    -fx-padding: 18;
+    -fx-spacing: 8;
+}
+
+.chip-success,
+.chip-warning,
+.chip-danger,
+.chip-neutral {
+    -fx-background-radius: 12;
+    -fx-padding: 4 10 4 10;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.chip-success {
+    -fx-background-color: -pos-success-tint;
+    -fx-text-fill: -pos-success;
+}
+
+.chip-warning {
+    -fx-background-color: -pos-accent-tint;
+    -fx-text-fill: -pos-accent;
+}
+
+.chip-danger {
+    -fx-background-color: -pos-danger-tint;
+    -fx-text-fill: -pos-danger;
+}
+
+.chip-neutral {
+    -fx-background-color: -pos-muted-tint;
+    -fx-text-fill: -pos-muted;
+}
+
+.total-due {
+    -fx-background-color: -pos-rail;
+    -fx-background-radius: 14;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 14;
+    -fx-padding: 18;
+    -fx-spacing: 6;
+}
+
+.total-due .caption {
+    -fx-text-fill: -pos-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.total-due .amount {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 36px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -pos-accent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Table                                                               */
+/* ------------------------------------------------------------------ */
+
+.table-view {
+    -fx-background-color: -pos-border, -pos-surface;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 14, 13;
+    -fx-padding: 1;
+    -fx-fixed-cell-size: 52;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -pos-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-size: 44;
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "Manrope";
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -pos-muted;
+    -fx-alignment: center-left;
+    -fx-padding: 0 14 0 14;
+}
+
+.table-view .column-header.numeric .label {
+    -fx-alignment: center-right;
+}
+
+.table-view .column-header .arrow {
+    -fx-background-color: -pos-muted;
+}
+
+.table-view .column-resize-line {
+    -fx-background-color: -pos-accent;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: -pos-border, -pos-surface;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-text-background-color: -pos-text;
+}
+
+.table-view .table-row-cell:filled:hover {
+    -fx-background-color: -pos-border, -pos-surface-2;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: -pos-border, -pos-raised;
+}
+
+.table-view .table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-border-width: 0;
+    -fx-padding: 0 14 0 14;
+    -fx-alignment: center-left;
+    -fx-text-fill: -pos-text;
+}
+
+.table-view .table-cell.numeric {
+    -fx-alignment: center-right;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: -pos-muted;
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll panes and scroll bars                                        */
+/* ------------------------------------------------------------------ */
+
+.scroll-pane,
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+}
+
+.scroll-bar > .track,
+.scroll-bar > .track-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar > .thumb {
+    -fx-background-color: -pos-border-strong;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6;
+}
+
+.scroll-bar > .thumb:hover,
+.scroll-bar > .thumb:pressed {
+    -fx-background-color: -pos-muted;
+}
+
+.scroll-bar > .increment-button,
+.scroll-bar > .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-bar > .increment-button > .increment-arrow,
+.scroll-bar > .decrement-button > .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-pane > .corner,
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Login                                                               */
+/* ------------------------------------------------------------------ */
+
+.login-root {
+    -fx-background-color: -pos-bg;
+}
+
+.login-card {
+    -fx-background-color: -pos-surface;
+    -fx-background-radius: 20;
+    -fx-border-color: -pos-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-padding: 36;
+    -fx-spacing: 20;
+    -fx-min-width: 420;
+    -fx-pref-width: 420;
+    -fx-max-width: 420;
+}
+
+/* Leaves room on the right for the show/hide PIN button. */
+.text-field.pin-field {
+    -fx-padding: 0 46 0 14;
+}
+
+.logo-badge.logo-lg {
+    -fx-min-width: 52;
+    -fx-pref-width: 52;
+    -fx-max-width: 52;
+    -fx-min-height: 52;
+    -fx-pref-height: 52;
+    -fx-max-height: 52;
+    -fx-background-radius: 14;
+    -fx-font-size: 18px;
+}
+
+.login-register {
+    -fx-font-size: 13px;
+}
+
+.login-heading {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+}
+
+.field-label {
+    -fx-text-fill: -pos-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.login-error {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.login-version {
+    -fx-font-size: 12px;
+}
+
+.btn-primary.btn-lg,
+.btn-secondary.btn-lg {
+    -fx-min-height: 52;
+    -fx-pref-height: 52;
+}
+
+/* ------------------------------------------------------------------ */
+/* App shell                                                           */
+/* ------------------------------------------------------------------ */
+
+.content-area {
+    -fx-background-color: -pos-bg;
+}
+
+.btn-secondary.btn-sm,
+.btn-ghost.btn-sm {
+    -fx-min-height: 36;
+    -fx-pref-height: 36;
+    -fx-padding: 0 14 0 14;
+    -fx-font-size: 13px;
+}
+
+.btn-primary.btn-xl {
+    -fx-min-height: 56;
+    -fx-pref-height: 56;
+    -fx-font-size: 16px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Sale screen                                                         */
+/* ------------------------------------------------------------------ */
+
+.sale-main {
+    -fx-padding: 22 24 22 24;
+    -fx-spacing: 18;
+}
+
+.scan-box {
+    -fx-min-width: 380;
+    -fx-pref-width: 380;
+    -fx-max-width: 380;
+    -fx-min-height: 46;
+    -fx-pref-height: 46;
+    -fx-max-height: 46;
+    -fx-background-color: -pos-surface;
+    -fx-background-radius: 10;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-padding: 0 10 0 14;
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+
+.scan-box:focus-within {
+    -fx-border-color: -pos-accent;
+}
+
+/* The field inside the scan box draws no box of its own */
+.scan-box .text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0 4 0 4;
+    -fx-min-height: 0;
+    -fx-pref-height: 44;
+}
+
+.keycap {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -pos-muted;
+    -fx-background-color: -pos-raised;
+    -fx-background-radius: 6;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-padding: 2 7 2 7;
+}
+
+.status-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.category-chip {
+    -fx-min-height: 36;
+    -fx-pref-height: 36;
+    -fx-padding: 0 16 0 16;
+    -fx-background-color: -pos-surface;
+    -fx-background-insets: 0;
+    -fx-background-radius: 18;
+    -fx-border-color: -pos-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+    -fx-text-fill: -pos-text;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+}
+
+.category-chip:hover {
+    -fx-background-color: -pos-surface-2;
+}
+
+.category-chip:selected {
+    -fx-background-color: -pos-raised;
+    -fx-border-color: -pos-accent;
+    -fx-text-fill: -pos-accent;
+}
+
+.table-view .table-cell.muted {
+    -fx-text-fill: -pos-muted;
+}
+
+.table-view .table-row-cell:out-of-stock {
+    -fx-opacity: 0.45;
+}
+
+.table-view .table-cell.add-cell {
+    -fx-alignment: center;
+    -fx-padding: 0;
+}
+
+.btn-add {
+    -fx-min-width: 36;
+    -fx-pref-width: 36;
+    -fx-max-width: 36;
+    -fx-min-height: 36;
+    -fx-pref-height: 36;
+    -fx-max-height: 36;
+    -fx-padding: 0;
+    -fx-background-color: -pos-accent-tint;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+.btn-add:hover {
+    -fx-background-color: rgba(245, 165, 36, 0.28);
+}
+
+.btn-add .icon {
+    -fx-stroke: -pos-accent;
+}
+
+/* Cart panel */
+
+.cart-panel {
+    -fx-min-width: 400;
+    -fx-pref-width: 400;
+    -fx-max-width: 400;
+    -fx-background-color: -pos-panel;
+    -fx-border-color: transparent transparent transparent -pos-border;
+    -fx-border-width: 0 0 0 1;
+    -fx-padding: 22 24 22 24;
+    -fx-spacing: 16;
+}
+
+.cart-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 800;
+}
+
+.cart-list {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+
+.cart-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 8 0;
+}
+
+.cart-list .placeholder .label {
+    -fx-text-fill: -pos-muted;
+    -fx-text-alignment: center;
+}
+
+.cart-row {
+    -fx-background-color: -pos-surface-2;
+    -fx-background-radius: 10;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-padding: 12 14 12 14;
+}
+
+.cart-list .list-cell:selected .cart-row {
+    -fx-background-color: -pos-raised;
+    -fx-border-color: -pos-accent;
+}
+
+.cart-qty {
+    -fx-min-width: 40;
+    -fx-alignment: center;
+    -fx-background-color: -pos-accent-tint;
+    -fx-background-radius: 6;
+    -fx-padding: 3 6 3 6;
+    -fx-text-fill: -pos-accent;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.cart-name {
+    -fx-font-weight: 600;
+}
+
+.cart-line-total {
+    -fx-font-weight: 700;
+}
+
+.totals-row .label {
+    -fx-font-size: 14px;
+}
+
+.quick-cash {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 13px;
+    -fx-padding: 0 8 0 8;
+}
+
+/* ------------------------------------------------------------------ */
+/* Products screen                                                     */
+/* ------------------------------------------------------------------ */
+
+.products-main {
+    -fx-padding: 24;
+    -fx-spacing: 18;
+}
+
+.scan-box.search-box {
+    -fx-min-width: 300;
+    -fx-pref-width: 300;
+    -fx-max-width: 300;
+}
+
+.stat-note {
+    -fx-font-size: 12px;
+}
+
+.table-view .table-cell.actions-cell {
+    -fx-padding: 0 10 0 10;
+}
+
+.btn-icon.btn-icon-sm {
+    -fx-min-width: 32;
+    -fx-pref-width: 32;
+    -fx-max-width: 32;
+    -fx-min-height: 32;
+    -fx-pref-height: 32;
+    -fx-max-height: 32;
+    -fx-background-radius: 8;
+}
+
+.btn-icon.btn-icon-danger:hover {
+    -fx-background-color: -pos-danger-tint;
+}
+
+.btn-icon .icon-box {
+    -fx-scale-x: 0.85;
+    -fx-scale-y: 0.85;
+}
+
+.edit-panel {
+    -fx-min-width: 380;
+    -fx-pref-width: 380;
+    -fx-max-width: 380;
+    -fx-background-color: -pos-panel;
+    -fx-border-color: transparent transparent transparent -pos-border;
+    -fx-border-width: 0 0 0 1;
+    -fx-padding: 24;
+    -fx-spacing: 16;
+}
+
+.edit-panel .combo-box > .list-cell {
+    -fx-text-fill: -pos-text;
+}
+
+.text-field:error,
+.combo-box:error {
+    -fx-border-color: -pos-danger;
+}
+
+.note-warning {
+    -fx-background-color: -pos-accent-tint;
+    -fx-background-radius: 10;
+    -fx-padding: 10 12 10 12;
+    -fx-text-fill: -pos-accent;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.form-message {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.form-message:error {
+    -fx-text-fill: -pos-danger;
+}
+
+.form-message:success {
+    -fx-text-fill: -pos-success;
+}
+
+/* ------------------------------------------------------------------ */
+/* Sales History                                                       */
+/* ------------------------------------------------------------------ */
+
+.table-view .table-cell.strong {
+    -fx-font-weight: 700;
+}
+
+/* DatePicker drawn like a secondary button */
+.date-picker.date-button {
+    -fx-min-height: 44;
+    -fx-pref-height: 44;
+    -fx-pref-width: 190;
+    -fx-background-color: -pos-surface-2;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.date-picker.date-button:hover {
+    -fx-background-color: -pos-raised;
+}
+
+.date-picker.date-button:focused,
+.date-picker.date-button:showing {
+    -fx-border-color: -pos-accent;
+}
+
+.date-picker.date-button > .text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-min-height: 0;
+    -fx-pref-height: 42;
+    -fx-padding: 0 4 0 16;
+    -fx-text-fill: -pos-text;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}
+
+.date-picker.date-button > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 16 0 8;
+}
+
+.date-picker.date-button > .arrow-button > .arrow {
+    -fx-background-color: -pos-muted;
+}
+
+.date-picker-popup {
+    -fx-background-color: -pos-surface-2;
+    -fx-background-radius: 12;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-radius: 12;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 16, 0, 0, 6);
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup .spinner .label {
+    -fx-text-fill: -pos-text;
+    -fx-font-weight: 700;
+}
+
+.date-picker-popup .spinner .button {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+    -fx-background-color: -pos-muted;
+}
+
+.date-picker-popup > * > .calendar-grid {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup .day-name-cell {
+    -fx-text-fill: -pos-muted;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}
+
+.date-picker-popup .day-cell {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-text-fill: -pos-text;
+}
+
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: -pos-raised;
+}
+
+.date-picker-popup .day-cell.previous-month,
+.date-picker-popup .day-cell.next-month {
+    -fx-text-fill: -pos-border-strong;
+}
+
+.date-picker-popup .day-cell.today {
+    -fx-border-color: -pos-accent;
+    -fx-border-radius: 8;
+    -fx-text-fill: -pos-accent;
+}
+
+.date-picker-popup .day-cell:selected {
+    -fx-background-color: -pos-accent;
+    -fx-text-fill: -pos-on-accent;
+    -fx-font-weight: 700;
+}
+
+.detail-scroll {
+    -fx-background-color: transparent;
+}
+
+.detail-total-row .label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+}
+
+.detail-total-row .detail-total {
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -pos-accent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Settings                                                            */
+/* ------------------------------------------------------------------ */
+
+.settings-header {
+    -fx-padding: 24 24 0 24;
+}
+
+.settings-columns {
+    -fx-padding: 18 24 24 24;
+}
+
+.settings-card {
+    -fx-spacing: 16;
+    -fx-padding: 20;
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+}
+
+.setting-row {
+    -fx-alignment: center-left;
+    -fx-spacing: 16;
+}
+
+.setting-name {
+    -fx-font-weight: 600;
+}
+
+.setting-hint {
+    -fx-font-size: 12px;
+}
+
+.text-field.read-only {
+    -fx-background-color: -pos-surface-2;
+    -fx-text-fill: -pos-muted;
+    -fx-border-color: -pos-border;
+}
+
+.user-row {
+    -fx-background-color: -pos-surface-2;
+    -fx-background-radius: 10;
+    -fx-padding: 10 12 10 12;
+}
+
+.user-row:inactive .user-avatar,
+.user-row:inactive .setting-name,
+.user-row:inactive .chip-warning,
+.user-row:inactive .chip-neutral {
+    -fx-opacity: 0.5;
+}
+
+.user-avatar {
+    -fx-min-width: 36;
+    -fx-pref-width: 36;
+    -fx-max-width: 36;
+    -fx-min-height: 36;
+    -fx-pref-height: 36;
+    -fx-max-height: 36;
+    -fx-background-color: -pos-raised;
+    -fx-background-radius: 18;
+}
+
+.switch:disabled {
+    -fx-opacity: 0.45;
+}
+
+.dialog-card {
+    -fx-min-width: 480;
+    -fx-pref-width: 480;
+    -fx-max-width: 480;
+    -fx-background-color: -pos-surface;
+    -fx-background-radius: 18;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+    -fx-padding: 28;
+    -fx-spacing: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 40, 0, 0, 16);
+}
+
+/* ------------------------------------------------------------------ */
+/* Overlay dialogs: Checkout and Receipt                               */
+/* ------------------------------------------------------------------ */
+
+.scrim {
+    -fx-background-color: rgba(0, 0, 0, 0.62);
+}
+
+.btn-icon {
+    -fx-min-width: 36;
+    -fx-pref-width: 36;
+    -fx-max-width: 36;
+    -fx-min-height: 36;
+    -fx-pref-height: 36;
+    -fx-max-height: 36;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+.btn-icon:hover {
+    -fx-background-color: -pos-raised;
+}
+
+.btn-primary .progress-indicator {
+    -fx-progress-color: -pos-on-accent;
+}
+
+.checkout-card {
+    -fx-min-width: 560;
+    -fx-pref-width: 560;
+    -fx-max-width: 560;
+    -fx-background-color: -pos-surface;
+    -fx-background-radius: 18;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+    -fx-padding: 28;
+    -fx-spacing: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 40, 0, 0, 16);
+}
+
+.amount-due-box {
+    -fx-background-color: -pos-rail;
+    -fx-background-radius: 14;
+    -fx-border-color: -pos-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 14;
+    -fx-padding: 18;
+    -fx-spacing: 4;
+}
+
+.amount-due-box .caption,
+.change-box .caption {
+    -fx-text-fill: -pos-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.amount-due {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 44px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -pos-accent;
+}
+
+.segmented {
+    -fx-spacing: 8;
+}
+
+.segment {
+    -fx-min-height: 44;
+    -fx-pref-height: 44;
+    -fx-background-color: -pos-surface-2;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-text-fill: -pos-text;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}
+
+.segment:hover {
+    -fx-background-color: -pos-raised;
+}
+
+.segment:selected {
+    -fx-background-color: -pos-raised;
+    -fx-border-color: -pos-accent;
+    -fx-text-fill: -pos-accent;
+}
+
+.text-field.cash-field {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-min-height: 52;
+    -fx-pref-height: 52;
+}
+
+.change-box {
+    -fx-min-height: 68;
+    -fx-background-color: rgba(52, 211, 153, 0.10);
+    -fx-background-radius: 14;
+    -fx-padding: 14 18 14 18;
+}
+
+.change-amount {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -pos-success;
+}
+
+.change-box:short {
+    -fx-background-color: rgba(248, 113, 113, 0.10);
+}
+
+.change-box:short .change-amount {
+    -fx-text-fill: -pos-danger;
+    -fx-font-size: 22px;
+}
+
+.receipt-card {
+    -fx-min-width: 460;
+    -fx-pref-width: 460;
+    -fx-max-width: 460;
+    -fx-background-color: -pos-surface;
+    -fx-background-radius: 18;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+    -fx-padding: 28;
+    -fx-spacing: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 40, 0, 0, 16);
+}
+
+.success-circle {
+    -fx-min-width: 64;
+    -fx-pref-width: 64;
+    -fx-max-width: 64;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+    -fx-background-color: -pos-success-tint;
+    -fx-background-radius: 32;
+}
+
+.success-circle .icon {
+    -fx-stroke: -pos-success;
+}
+
+.receipt-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+}
+
+.receipt-scroll {
+    -fx-max-height: 380;
+    -fx-pref-height: 380;
+    -fx-background-color: -pos-rail;
+    -fx-background-radius: 10;
+}
+
+.receipt-scroll > .viewport {
+    -fx-background-color: -pos-rail;
+}
+
+/* ------------------------------------------------------------------ */
+/* Dialogs (Alert). Add this stylesheet to alert.getDialogPane().      */
+/* ------------------------------------------------------------------ */
+
+.dialog-pane {
+    -fx-background-color: -pos-panel;
+    -fx-border-color: -pos-border;
+    -fx-border-width: 1;
+    -fx-padding: 0;
+}
+
+.dialog-pane > .header-panel {
+    -fx-background-color: -pos-surface;
+    -fx-border-color: transparent transparent -pos-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 18 24 18 24;
+}
+
+.dialog-pane > .header-panel .label {
+    -fx-text-fill: -pos-text;
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+}
+
+.dialog-pane > .content {
+    -fx-padding: 20 24 20 24;
+}
+
+.dialog-pane > .content.label,
+.dialog-pane > .content .label {
+    -fx-text-fill: -pos-text;
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-padding: 0 24 20 24;
+}
+
+.dialog-pane > .button-bar .button {
+    -fx-min-height: 40;
+    -fx-padding: 0 18 0 18;
+    -fx-background-color: -pos-surface-2;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-color: -pos-border-strong;
+    -fx-border-radius: 10;
+    -fx-text-fill: -pos-text;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}
+
+.dialog-pane > .button-bar .button:hover {
+    -fx-background-color: -pos-raised;
+}
+
+.dialog-pane > .button-bar .button:default {
+    -fx-background-color: -pos-accent;
+    -fx-border-width: 0;
+    -fx-text-fill: -pos-on-accent;
+    -fx-font-weight: 800;
+}
+
+.dialog-pane > .button-bar .button:default:hover {
+    -fx-background-color: derive(-pos-accent, 12%);
+}
+
+/* Order chat window */
+.chat-window {
+    -fx-background-color: -pos-panel;
+}
+
+.chat-window .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.chat-bubble {
+    -fx-background-radius: 12;
+    -fx-padding: 8 12 8 12;
+}
+
+.chat-bubble-customer {
+    -fx-background-color: -pos-raised;
+}
+
+.chat-bubble-staff {
+    -fx-background-color: -pos-accent-tint;
+}
+
+.chat-text {
+    -fx-text-fill: -pos-text;
+    -fx-font-size: 14px;
+}
+
+.chat-meta {
+    -fx-font-size: 11px;
+}
+
+/* Product photos */
+.thumb {
+    -fx-background-color: -pos-raised;
+    -fx-background-radius: 8;
+}
+
+.thumb-letter {
+    -fx-text-fill: -pos-muted;
+    -fx-font-weight: 800;
+}
+
+.photo-box .thumb-letter {
+    -fx-font-size: 28px;
+}
+
+/* Sale screen product cards */
+.product-grid-scroll,
+.product-grid-scroll > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.product-grid {
+    -fx-padding: 2 2 12 2;
+}
+
+.product-card {
+    -fx-background-color: -pos-surface;
+    -fx-background-radius: 14;
+    -fx-border-color: -pos-border;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 10 10 12 10;
+}
+
+.product-card:hover {
+    -fx-border-color: -pos-accent;
+    -fx-background-color: -pos-surface-2;
+}
+
+.product-card:pressed {
+    -fx-background-color: -pos-raised;
+}
+
+.product-card:out-of-stock {
+    -fx-opacity: 0.45;
+}
+
+.product-card .thumb {
+    -fx-background-radius: 10;
+}
+
+.product-card .thumb-letter {
+    -fx-font-size: 40px;
+}
+
+.product-card-name {
+    -fx-text-fill: -pos-text;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.product-card-price {
+    -fx-text-fill: -pos-accent;
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
+}
+
+.product-card-stock {
+    -fx-text-fill: -pos-muted;
+    -fx-font-size: 11px;
+}
+
+.product-card-stock-warn {
+    -fx-text-fill: -pos-danger;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}

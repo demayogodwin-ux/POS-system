@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:id="productsRoot" fx:controller="com.pos.ui.ProductsController">
+
+    <!-- Main area -->
+    <center>
+        <VBox styleClass="products-main">
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="2">
+                    <Label text="Products" styleClass="title"/>
+                    <Label fx:id="subtitleLabel" styleClass="muted"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox fx:id="searchBox" styleClass="scan-box, search-box">
+                    <TextField fx:id="searchField" promptText="Search code, name or category" HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <Button fx:id="addButton" text="Add Product" onAction="#handleAdd" styleClass="btn-primary"/>
+            </HBox>
+
+            <HBox spacing="16">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="TOTAL PRODUCTS" styleClass="stat-label"/>
+                    <Label fx:id="totalProductsLabel" text="-" styleClass="stat-value"/>
+                    <Label fx:id="categoriesLabel" styleClass="muted, stat-note"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="INVENTORY VALUE" styleClass="stat-label"/>
+                    <Label fx:id="inventoryValueLabel" text="-" styleClass="stat-value"/>
+                    <Label text="Price x stock" styleClass="muted, stat-note"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="LOW STOCK" styleClass="stat-label"/>
+                    <Label fx:id="lowStockLabel" text="-" styleClass="stat-value"/>
+                    <Label text="At or below reorder level" styleClass="muted, stat-note"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="UNITS IN STOCK" styleClass="stat-label"/>
+                    <Label fx:id="unitsLabel" text="-" styleClass="stat-value"/>
+                    <Label text="All active products" styleClass="muted, stat-note"/>
+                </VBox>
+            </HBox>
+
+            <TableView fx:id="productTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="codeColumn" text="CODE" styleClass="mono, muted"/>
+                    <TableColumn fx:id="nameColumn" text="NAME"/>
+                    <TableColumn fx:id="categoryColumn" text="CATEGORY" styleClass="muted"/>
+                    <TableColumn fx:id="priceColumn" text="PRICE" styleClass="mono, numeric"/>
+                    <TableColumn fx:id="stockColumn" text="STOCK" styleClass="mono, numeric"/>
+                    <TableColumn fx:id="statusColumn" text="STATUS"/>
+                    <TableColumn fx:id="actionsColumn" text="ACTIONS" sortable="false" styleClass="actions-cell"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Edit panel -->
+    <right>
+        <VBox styleClass="edit-panel">
+
+            <Label fx:id="panelTitleLabel" text="New Product" styleClass="cart-title"/>
+
+            <HBox fx:id="photoRow" spacing="14" alignment="CENTER_LEFT" styleClass="photo-box">
+                <VBox spacing="8">
+                    <Label text="PHOTO" styleClass="field-label"/>
+                    <Button fx:id="choosePhotoButton" text="Choose photo..." onAction="#handleChoosePhoto" styleClass="btn-secondary"/>
+                    <Button fx:id="removePhotoButton" text="Remove photo" onAction="#handleRemovePhoto" styleClass="btn-ghost, btn-sm"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6">
+                <Label text="PRODUCT CODE" styleClass="field-label"/>
+                <TextField fx:id="codeField" promptText="Barcode or SKU" styleClass="mono"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="NAME" styleClass="field-label"/>
+                <TextField fx:id="nameField" promptText="Product name"/>
+            </VBox>
+
+            <VBox spacing="6">
+                <Label text="CATEGORY" styleClass="field-label"/>
+                <ComboBox fx:id="categoryBox" promptText="No category" maxWidth="Infinity"/>
+            </VBox>
+
+            <HBox spacing="12">
+                <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="PRICE" styleClass="field-label"/>
+                    <TextField fx:id="priceField" promptText="0.00" styleClass="mono"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="STOCK" styleClass="field-label"/>
+                    <TextField fx:id="stockField" promptText="0" styleClass="mono"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="12">
+                <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="LOW-STOCK LEVEL" styleClass="field-label"/>
+                    <TextField fx:id="levelField" promptText="5" styleClass="mono"/>
+                </VBox>
+                <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="0" maxWidth="Infinity">
+                    <Label text="LOCATION IN STORE" styleClass="field-label"/>
+                    <TextField fx:id="locationField" promptText="Aisle 3, Shelf B"/>
+                </VBox>
+            </HBox>
+
+            <Label fx:id="lowStockNote" wrapText="true" maxWidth="Infinity" styleClass="note-warning"
+                   text="Stock is at or below the low-stock level. Time to reorder."/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Label fx:id="formMessageLabel" wrapText="true" styleClass="form-message"/>
+
+            <HBox spacing="12">
+                <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteSelected"
+                        styleClass="btn-ghost, text-danger"/>
+                <Button fx:id="saveButton" text="Save Changes" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                        onAction="#handleSave" styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </right>
+</BorderPane>
